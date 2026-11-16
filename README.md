@@ -57,7 +57,7 @@ $$ \vec{B_i} = \sum_{j \in nearby} w(\vec{r_{ij}})\vec{B}(\vec{r}_{ij}) $$
 
 A magnet however can never contribute to its own field so we must check such that $i \neq j$; its self-field is singular at its center and a magnet cannot push on itself.
 
-### Energy force and torque
+### Energy, force and torque
 
 A dipole in an external field has potential energy described as the dot product between the moment and the field:
 
@@ -89,3 +89,42 @@ Differentiating the dipole field gives an exact expression for the force between
 $$ \vec{F}_{ij} = \frac{3kw}{d^4}[(\vec{m}_j \cdot \hat{r})\vec{m}_i + (\vec{m}_i \cdot \hat{r})\vec{m}_j + (\vec{m}_i \cdot \vec{m}_j)\hat{r} - 5(\vec{m}_j \cdot \hat{r})(\vec{m}_i \cdot \hat{r})\hat{r}] $$
 
 $$ \vec{F}_{ji} = -\vec{F}_{ij} $$
+
+As we calculated force, it is now time to move with torque. Torque can be defined as:
+
+$$ \tau = -\frac{\partial U}{\partial \theta} = (\vec{m} \times \vec{B})_z = \vec{m}_x\vec{B}_y - \vec{m}_y\vec{B}_x $$
+
+Evaluated with $\vec{B} = \vec{B}_i$. The magnet rotates until its moment lines up with the local field.
+
+### Contact
+
+The point-dipole force diverges at touching distance, so each magnet also gets a physical body. For radii $a_i, \ a_j$ and separation $r < a_i + a_j$:
+
+$$ \delta = (a_i + a_j) - r, \qquad \vec{F}_{contact} = \kappa \delta \hat{r}_{ij} - c_n(\vec{v}_{rel} \cdot \hat{r})\hat{r} $$
+
+The first term pushes overlapping magnets apart, and the second damps their approach spped so they do not bounce indefinitely.
+
+<p></p>
+
+We use the semi-implicit Euler implementation to move and rotate the objects with our given force and torque:
+
+<p></p>
+
+$$ \vec{v} \leftarrow \vec{v} + \frac{\vec{F}}{M}Δt, \qquad \vec{v} \leftarrow \vec{v}(1 - c_{lin}Δt), \qquad \vec{x} \leftarrow \vec{x} + \vec{v}Δt $$
+
+<p></p>
+
+$$ \omega \leftarrow \omega + \frac{\tau}{I}Δt, \qquad \omega \leftarrow \omega(1 - c_{ang}Δt), \qquad \theta \leftarrow \theta + \omega Δt $$
+
+<p></p>
+
+As the magnet rotates, we must take into account the dipole's rotation as well. This can be modelled as:
+
+$$ \vec{m} = \lVert \vec{m} \lVert (\cos(\theta + \phi), \sin(\theta + \phi)) $$
+
+Where:
+1. $\theta$ is the rotation of the magnet.
+2. $\phi$ is the initial rotation of the dipole.
+
+### Alternative Model (Two-pole bar magnet)
+
