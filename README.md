@@ -37,7 +37,7 @@ This produces a field-line pattern such that field lines leave the north pole an
 
 ### Smooth cutoff taper
 
-Farther magnets contribute very little. As a technical optimization, only magnets within a certain radius $R$ are considered. However, cutting them off abruptly would cause small force jumps (visible as jitter). So each sontribution is multiplied by a smooth weight:
+Farther magnets contribute very little. As a technical optimization, only magnets within a certain radius $R$ are considered. However, cutting them off abruptly would cause small force jumps (visible as jitter). So each contribution is multiplied by a smooth weight:
 
 $$ s = clamp(\frac{\lVert \vec{r} \lVert - 0.8R}{0.2R}, 0, 1) \qquad w(\vec{r}) = 1 - s^2(3 - 2s) $$
 
