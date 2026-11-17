@@ -3,4 +3,19 @@ project(magnet_simulator)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(magnet_simulator main.cpp)
+add_executable(magnet_simulator main.cpp
+        src/scene/Renderer.cpp
+        src/scene/Renderer.h
+        src/scene/Scene.cpp
+        src/scene/Scene.h
+        src/scene/Camera.cpp
+        src/scene/Camera.h
+        src/WorldSettings.h
+        src/model/dipole_model/DipoleModel.cpp
+        src/model/dipole_model/DipoleModel.h
+        src/model/two_pole_model/TwoPoleModel.cpp
+        src/model/two_pole_model/TwoPoleModel.h
+        src/util/QuadTree.cpp
+        src/util/QuadTree.h
+        src/model/Model.cpp
+        src/model/Model.h)
