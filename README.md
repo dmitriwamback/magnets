@@ -46,7 +46,7 @@ This produces a field-line pattern such that field lines leave the north pole an
 
 Farther magnets contribute very little. As a technical optimization, only magnets within a certain radius $R$ are considered. However, cutting them off abruptly would cause small force jumps (visible as jitter). So each contribution is multiplied by a smooth weight:
 
-$$ s = \operatorname{clamp}\left(\frac{\lVert \vec{r} \rVert - 0.8R}{0.2R}, 0, 1\right) \qquad w(\vec{r}) = 1 - s^2(3 - 2s) $$
+$$ s = clamp\left(\frac{\lVert \vec{r} \rVert - 0.8R}{0.2R}, 0, 1\right) \qquad w(\vec{r}) = 1 - s^2(3 - 2s) $$
 
 <p></p>
 
