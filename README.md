@@ -165,7 +165,7 @@ Where:
 
 ### Alternative Model (Two-pole bar magnet)
 
-In the first model, the dipole is only accurate from far away. Up close, it neglects the length of the magnet, so bars cannot snap side by side or pivot around each other. To fix this, the magnet is modelled aas to magnetic poles of opposite charge $+q$ and $-q$ placed at opposite ends.
+In the first model, the dipole is only accurate from far away. Up close, it neglects the length of the magnet, so bars cannot snap side by side or pivot around each other. To fix this, the magnet is modelled as two magnetic poles of opposite charge $+q$ and $-q$ placed at opposite ends.
 
 <p></p>
 
