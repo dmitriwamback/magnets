@@ -31,6 +31,8 @@ $$ \vec{B}(\vec{r}) = k\frac{3(\vec{m} \cdot \hat{r})\hat{r} - \vec{m}}{d^3} $$
 
 <p></p>
 
+**From Kintriligator, Arxiv*
+
 Where:
 
 1. $k$ is a strength constant (stands in for $\frac{\mu_0}{4\pi}$)
@@ -87,6 +89,8 @@ The force can be represented as the gradient of this energy:
 
 $$ \vec{F} = -\nabla U = \nabla(\vec{m} \cdot \vec{B}) = (\vec{m} \cdot \nabla)\vec{B} $$
 
+**From Kintriligator, Arxiv, Rochester*
+
 The last step works because the curl of $\vec{B}$ is zero where there are no currents.
 
 <p></p>
@@ -109,11 +113,15 @@ $$ \vec{F}_{ij} = \frac{3kw}{d^4}[(\vec{m}_j \cdot \hat{r})\vec{m}_i + (\vec{m}_
 
 $$ \vec{F}_{ji} = -\vec{F}_{ij} $$
 
+**From Arxiv*
+
 Using the same energy, we can move onto torque, differentiating it with respect to $\theta$. Torque can be defined as:
 
 $$ \tau = -\frac{\partial U}{\partial \theta} = (\vec{m} \times \vec{B})_z = m_x B_y - m_y B_x $$
 
 Evaluated with $\vec{B} = \vec{B}_i$. The magnet rotates until its moment lines up with the local field.
+
+**From Arxiv*
 
 ### Contact
 
@@ -179,7 +187,7 @@ Where:
 
 1. $\vec{x}$ is the center of the magnet
 2. $L$ is the distance between the two poles.
-3. $\vec{p}_+$ is the north pole and $\vec{p}_-$ is the south pole.
+3. $\vec{p}_+, \ \vec{p}_-$ are the north and south poles.
 
 <p></p>
 
@@ -201,3 +209,8 @@ Where:
 
 <p></p>
 
+### References
+
+1. <a href="https://www.pas.rochester.edu/~stte/phy415F20/units/unit_4-3-supp.pdf">Rochester</a>
+2. <a href="https://kintriligator.physics.ucsd.edu/w13/lec3.pdf">Kintriligator</a>
+3. <a href="https://arxiv.org/pdf/2212.00876">Arxiv</a>
