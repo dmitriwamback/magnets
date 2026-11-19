@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "../object/Magnet.h"
+#include "../shader/Shader.h"
 
 enum class ModelType {
     DIPOLE_MODEL,
@@ -17,7 +18,7 @@ class Model {
 public:
     virtual void Step(float deltaTime);
     void Populate(Magnet& magnet);
-    void Render();
+    void Render(Shader& shader, float deltaTime);
     std::vector<Magnet> Magnets();
 
     std::vector<Magnet> magnets;

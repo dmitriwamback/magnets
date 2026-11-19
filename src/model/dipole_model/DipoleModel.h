@@ -14,9 +14,12 @@ class DipoleModel: public Model {
 public:
     DipoleModel() = default;
 
-    void Populate(Magnet& magnet, glm::dvec2 dipole);
+    void Populate(Magnet& magnet, glm::dvec2 dipole, double strength);
     void Step(float deltaTime) override;
 private:
+
+    double linearDrag  = 2.0;
+    double angularDrag = 5.0;
     std::vector<Dipole> dipoles;
 };
 

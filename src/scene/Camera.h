@@ -11,13 +11,12 @@
 
 class Camera {
 public:
-    glm::vec2 position;
+    glm::vec2 position = glm::vec2(0.0f);
     float lastMouseX, lastMouseY;
-    int mouseButton = GLFW_MOUSE_BUTTON_RIGHT;
+    int mouseButton = GLFW_MOUSE_BUTTON_LEFT;
 
-private:
-    glm::mat4 projection;
-    glm::mat4 view;
+    glm::mat4 ComputeProjectionMatrix(float width, float height);
+    glm::mat4 ComputeViewMatrix();
 };
 
 

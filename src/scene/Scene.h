@@ -14,9 +14,11 @@
 
 class Scene {
 public:
+    Scene();
+
     void SetModel(ModelType model);
-    void Populate(Magnet& magnet, glm::vec2 dipole);
-    void Render(Camera& camera, float deltaTime);
+    void Populate(Magnet& magnet, double strength, glm::dvec2 dipole);
+    void Render(Camera& camera, float deltaTime, float width, float height);
 
 private:
     Model* magneticModel;
