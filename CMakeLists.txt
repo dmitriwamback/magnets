@@ -23,7 +23,10 @@ add_executable(magnet_simulator main.cpp
         src/object/Magnet.h
         src/shader/Shader.cpp
         src/shader/Shader.h
-        src/shader/ShaderSources.h)
+        src/shader/ShaderSources.h
+        src/util/MathUtil.h
+        src/model/dipole_model/Dipole.cpp
+        src/model/dipole_model/Dipole.h)
 
 find_package(glfw3 REQUIRED)
 find_package(GLEW REQUIRED)

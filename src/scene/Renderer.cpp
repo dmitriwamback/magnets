@@ -7,6 +7,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "../util/MathUtil.h"
+
 void Renderer::Initialize() {
 
     if (!glfwInit()) {
@@ -35,6 +37,18 @@ void Renderer::Initialize() {
         std::cerr << "GLEW init failed: " << glewGetErrorString(err) << std::endl;
     }
     glEnable(GL_DEPTH_TEST);
+
+    // test
+    double d;
+    glm::dvec2 r = glm::dvec2(5, 1); // direction between two magnets
+    glm::dvec2 r_hat = soften(r, d); // normalized with epsilon
+
+    std::cout << "r_hat: (" << r_hat.x << ", " << r_hat.y << ") - d: " << d <<  std::endl;
+
+    glm::dvec2 dipole = glm::dvec2(0, 1);
+    glm::dvec2 field = B(r_hat, dipole, d);
+
+    std::cout << "field: (" << field.x << ", " << field.y << ")" << std::endl;
 }
 
 void Renderer::GameLoop() {

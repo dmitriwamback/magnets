@@ -31,6 +31,7 @@ void Scene::Populate(Magnet& magnet, glm::vec2 dipole = glm::vec2(0.0f)) {
     }
 }
 
-void Scene::Render(Camera& camera) {
-
+void Scene::Render(Camera& , float deltaTime) {
+    magneticModel->Step(deltaTime);
+    magneticModel->Render();
 }

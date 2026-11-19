@@ -6,6 +6,7 @@
 #define MAGNET_SIMULATOR_DIPOLEMODEL_H
 #include <glm/vec2.hpp>
 
+#include "Dipole.h"
 #include "../Model.h"
 
 
@@ -13,10 +14,10 @@ class DipoleModel: public Model {
 public:
     DipoleModel() = default;
 
-    void Populate(Magnet& magnet, glm::vec2 dipole);
+    void Populate(Magnet& magnet, glm::dvec2 dipole);
     void Step(float deltaTime) override;
 private:
-    std::vector<glm::vec2> dipoles;
+    std::vector<Dipole> dipoles;
 };
 
 

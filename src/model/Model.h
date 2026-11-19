@@ -17,6 +17,7 @@ class Model {
 public:
     virtual void Step(float deltaTime);
     void Populate(Magnet& magnet);
+    void Render();
     std::vector<Magnet> Magnets();
 
     std::vector<Magnet> magnets;

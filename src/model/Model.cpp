@@ -15,3 +15,7 @@ void Model::Populate(Magnet &magnet) {
 std::vector<Magnet> Model::Magnets() {
     return magnets;
 }
+
+void Model::Render() {
+
+}
