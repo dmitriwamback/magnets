@@ -13,6 +13,7 @@ public:
     glm::dvec2 GetDipole();
     double Angle();
     double Strength();
+    double TotalAngle();
     void Rotate(double angle);
 private:
     glm::dvec2 dipole;

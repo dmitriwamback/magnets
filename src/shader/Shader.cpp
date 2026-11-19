@@ -63,3 +63,8 @@ void Shader::SetInt(const char *variableName, int value) {
     int location = glGetUniformLocation(program, variableName);
     glUniform1i(location, value);
 }
+
+void Shader::SetFloat(const char *variableName, float value) {
+    int location = glGetUniformLocation(program, variableName);
+    glUniform1f(location, value);
+}

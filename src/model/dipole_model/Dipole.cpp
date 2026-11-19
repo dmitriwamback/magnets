@@ -20,6 +20,10 @@ double Dipole::Angle() {
     return initialAngle;
 }
 
+double Dipole::TotalAngle() {
+    return initialAngle + currentAngle;
+}
+
 double Dipole::Strength() {
     return strength;
 }

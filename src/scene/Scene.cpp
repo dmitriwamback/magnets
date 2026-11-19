@@ -38,8 +38,9 @@ void Scene::Populate(Magnet& magnet, double strength = 0.0, glm::dvec2 dipole = 
 }
 
 void Scene::Render(Camera& camera, float deltaTime, float width, float height) {
-    magneticModel->Step(deltaTime);
+
     shader.Use();
+    magneticModel->Step(deltaTime);
 
     glm::mat4 projection = camera.ComputeProjectionMatrix(width, height);
     glm::mat4 view = camera.ComputeViewMatrix();

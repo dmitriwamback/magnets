@@ -57,3 +57,15 @@ void DipoleModel::Step(float deltaTime) {
     }
 }
 
+void DipoleModel::Render(Shader& shader, float deltaTime) {
+    for (int i = 0; i < magnets.size(); i++) {
+        Magnet& magnet = magnets[i];
+        Dipole dipole = dipoles[i];
+
+        glm::mat4 model = ComputeModelMatrix(glm::vec3(magnet.position, 0.0f), glm::vec3(0.0f, 0.0f, magnet.rotation), glm::vec3(magnet.scale, 1.0f));
+        shader.SetMatrix4("model", model);
+        shader.SetVector2("magnetCenter", magnet.position);
+        shader.SetFloat("momentAngle", (float)dipole.TotalAngle());
+        magnet.Render(deltaTime);
+    }
+}

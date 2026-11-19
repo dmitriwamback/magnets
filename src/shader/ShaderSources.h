@@ -22,8 +22,7 @@ out prop {
 
 void main() {
     vs_out.uv = uv;
-    vs_out.fragp = position;
-
+    vs_out.fragp = (model * vec4(position, 0.0, 1.0)).xy;
     gl_Position = projection * view * model * vec4(position, 0.0, 1.0);
 }
 )";
@@ -39,8 +38,17 @@ in prop {
     vec2 fragp;
 } fs_in;
 
+uniform vec2 magnetCenter;
+uniform float momentAngle;
+
 void main() {
-    fragc = vec4(1.0);
+    vec2 p   = fs_in.fragp - magnetCenter;
+    vec2 dir = vec2(cos(momentAngle), sin(momentAngle));
+    float s  = dot(p, dir);
+
+    vec3 north = vec3(0.85, 0.15, 0.15);
+    vec3 south = vec3(0.15, 0.30, 0.85);
+    fragc = vec4(mix(south, north, smoothstep(-0.05, 0.05, s)), 1.0);
 }
 )";
 

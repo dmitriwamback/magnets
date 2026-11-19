@@ -16,6 +16,7 @@ public:
 
     void Populate(Magnet& magnet, glm::dvec2 dipole, double strength);
     void Step(float deltaTime) override;
+    void Render(Shader& shader, float deltaTime) override;
 private:
 
     double linearDrag  = 2.0;
