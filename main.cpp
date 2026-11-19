@@ -1,5 +1,9 @@
 #include <iostream>
 
-int main() {
+#include "src/scene/Renderer.h"
 
+int main() {
+    Renderer renderer;
+    renderer.Initialize();
+    renderer.GameLoop();
 }

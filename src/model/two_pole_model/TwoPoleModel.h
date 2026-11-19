@@ -8,6 +8,8 @@
 
 
 class TwoPoleModel: public Model {
+public:
+    TwoPoleModel() = default;
 };
 
 

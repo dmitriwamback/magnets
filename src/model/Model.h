@@ -15,10 +15,10 @@ enum class ModelType {
 
 class Model {
 public:
-    void Step(float deltaTime);
+    virtual void Step(float deltaTime);
     void Populate(Magnet& magnet);
     std::vector<Magnet> Magnets();
-private:
+
     std::vector<Magnet> magnets;
 };
 

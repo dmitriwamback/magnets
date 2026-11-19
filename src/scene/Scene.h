@@ -15,7 +15,7 @@
 class Scene {
 public:
     void SetModel(ModelType model);
-    void Populate(Magnet& magnet);
+    void Populate(Magnet& magnet, glm::vec2 dipole);
     void Render(Camera& camera);
 
 private:

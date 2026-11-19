@@ -18,8 +18,17 @@ void Scene::SetModel(ModelType modelType) {
     }
 }
 
-void Scene::Populate(Magnet& magnet) {
-    magneticModel->Populate(magnet);
+void Scene::Populate(Magnet& magnet, glm::vec2 dipole = glm::vec2(0.0f)) {
+
+    if (DipoleModel* dipoleModel = dynamic_cast<DipoleModel*>(magneticModel)) {
+        if (glm::length(dipole) < 0.00001) {
+            throw std::runtime_error("Dipole model needs a dipole");
+        }
+        dipoleModel->Populate(magnet, dipole);
+    }
+    else if (TwoPoleModel* twoPoleModel = dynamic_cast<TwoPoleModel*>(magneticModel)) {
+        //twoPoleModel->Populate(magnet);
+    }
 }
 
 void Scene::Render(Camera& camera) {
