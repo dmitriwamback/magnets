@@ -4,9 +4,22 @@
 
 #ifndef MAGNET_SIMULATOR_MODEL_H
 #define MAGNET_SIMULATOR_MODEL_H
+#include <vector>
 
+#include "../object/Magnet.h"
+
+enum class ModelType {
+    DIPOLE_MODEL,
+    TWO_POLE_MODEL
+};
 
 class Model {
+public:
+    void Step(float deltaTime);
+    void Populate(Magnet& magnet);
+    std::vector<Magnet> Magnets();
+private:
+    std::vector<Magnet> magnets;
 };
 
 

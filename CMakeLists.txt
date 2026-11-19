@@ -18,4 +18,19 @@ add_executable(magnet_simulator main.cpp
         src/util/QuadTree.cpp
         src/util/QuadTree.h
         src/model/Model.cpp
-        src/model/Model.h)
+        src/model/Model.h
+        src/object/Magnet.cpp
+        src/object/Magnet.h
+        src/shader/Shader.cpp
+        src/shader/Shader.h
+        src/shader/ShaderSources.h)
+
+find_package(glfw3 REQUIRED)
+find_package(GLEW REQUIRED)
+find_package(glm REQUIRED)
+
+target_link_libraries(magnet_simulator PRIVATE
+    glfw
+    GLEW::GLEW
+    glm::glm
+)

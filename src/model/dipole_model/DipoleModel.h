@@ -4,9 +4,10 @@
 
 #ifndef MAGNET_SIMULATOR_DIPOLEMODEL_H
 #define MAGNET_SIMULATOR_DIPOLEMODEL_H
+#include "../Model.h"
 
 
-class DipoleModel {
+class DipoleModel: public Model {
 };
 
 

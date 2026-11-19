@@ -4,9 +4,10 @@
 
 #ifndef MAGNET_SIMULATOR_TWOPOLEMODEL_H
 #define MAGNET_SIMULATOR_TWOPOLEMODEL_H
+#include "../Model.h"
 
 
-class TwoPoleModel {
+class TwoPoleModel: public Model {
 };
 
 
