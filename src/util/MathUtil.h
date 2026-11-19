@@ -8,7 +8,9 @@
 #include <glm/vec3.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#define k 1.25663706e-6
+constexpr double MU_0 = 1.25663706e-6;
+constexpr double k = MU_0 / (4.0 * M_PI);
+
 #define R 10.0
 
 inline glm::mat4 ComputeModelMatrix(const glm::vec3 &position, const glm::vec3 &rotation, const glm::vec3 &size) {
@@ -44,7 +46,7 @@ inline double w(glm::dvec2 r) {
 }
 
 inline double torque(glm::dvec2 B, glm::dvec2 dipole) {
-    return dipole.x * B.y + dipole.y * B.x;
+    return dipole.x * B.y - dipole.y * B.x;
 }
 
 #endif //MAGNET_SIMULATOR_MATHUTIL_H

@@ -40,7 +40,7 @@ void Renderer::Initialize() {
 
     // test
     double d;
-    glm::dvec2 r = glm::dvec2(5, 1); // direction between two magnets
+    glm::dvec2 r = glm::dvec2(1, 1); // direction between two magnets
     glm::dvec2 r_hat = soften(r, d); // normalized with epsilon
 
     std::cout << "r_hat: (" << r_hat.x << ", " << r_hat.y << ") - d: " << d <<  std::endl;
@@ -49,6 +49,9 @@ void Renderer::Initialize() {
     glm::dvec2 field = B(r_hat, dipole, d);
 
     std::cout << "field: (" << field.x << ", " << field.y << ")" << std::endl;
+
+    double tau = torque(field, dipole);
+    std::cout << "torque: " << tau << std::endl;
 }
 
 void Renderer::GameLoop() {
