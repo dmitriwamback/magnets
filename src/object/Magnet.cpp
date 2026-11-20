@@ -19,7 +19,7 @@ Magnet::Magnet() {
         {{-1.0, 1.0}, {0.0, 1.0}}
     };
 
-    scale = glm::dvec2(0.5, 1.0);
+    scale = glm::dvec2(0.65, 1.0);
 
     glGenVertexArrays(1, &vertexArrayObject);
     glBindVertexArray(vertexArrayObject);
@@ -39,4 +39,16 @@ void Magnet::Render(float deltaTime) {
     glBindVertexArray(vertexArrayObject);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
     glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+std::vector<Vertex> Magnet::GetTransformedVertices() {
+    glm::mat4 model = ComputeModelMatrix(glm::vec3(position, 0.0f), glm::vec3(0.0f, 0.0f, rotation), glm::vec3(scale, 1.0f));
+    std::vector<Vertex> _vertices;
+
+    for (Vertex vertex : vertices) {
+        glm::vec4 t = model * glm::vec4(vertex.position, 0.0f, 1.0f);
+        _vertices.push_back({{t.x, t.y}, {0, 0}});
+    }
+
+    return _vertices;
 }

@@ -16,6 +16,10 @@ std::vector<Magnet> Model::Magnets() {
     return magnets;
 }
 
+void Model::Empty() {
+    magnets.clear();
+}
+
 void Model::Render(Shader& shader, float deltaTime) {
     for (Magnet &magnet : magnets) {
         glm::mat4 model = ComputeModelMatrix(glm::vec3(magnet.position, 0.0f), glm::vec3(0.0f, 0.0f, magnet.rotation), glm::vec3(magnet.scale, 1.0f));

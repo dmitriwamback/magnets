@@ -7,6 +7,9 @@
 #include <iostream>
 #include <ostream>
 
+#include "../../util/collision/EPA.h"
+#include "../../util/collision/GJK.h"
+
 void DipoleModel::Populate(Magnet &magnet, glm::dvec2 dipole, double strength) {
     auto d = Dipole(dipole, strength);
     dipoles.emplace_back(d);
@@ -28,6 +31,7 @@ void DipoleModel::Step(float deltaTime) {
 
             const glm::dvec2 mJ = dipoles[j].GetDipole() * dipoles[j].Strength();
             const glm::dvec2 r = magnets[i].position - magnets[j].position;
+
             if (glm::length(r) >= R) continue;
 
             double d;
@@ -55,6 +59,16 @@ void DipoleModel::Step(float deltaTime) {
         magnets[i].velocity *= 1.0 - linearDrag * dt;
         magnets[i].position += magnets[i].velocity * dt;
     }
+
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < n; j++) {
+            Collision collision = GJK::PerformGJK(magnets[i].GetTransformedVertices(), magnets[j].GetTransformedVertices());
+            if (collision.collided) {
+                magnets[i].position -= collision.normal * collision.depth;
+                magnets[j].position += collision.normal * collision.depth;
+            }
+        }
+    }
 }
 
 void DipoleModel::Render(Shader& shader, float deltaTime) {
@@ -68,4 +82,9 @@ void DipoleModel::Render(Shader& shader, float deltaTime) {
         shader.SetFloat("momentAngle", (float)dipole.TotalAngle());
         magnet.Render(deltaTime);
     }
+}
+
+void DipoleModel::Empty() {
+    magnets.clear();
+    dipoles.clear();
 }

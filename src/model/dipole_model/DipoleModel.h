@@ -16,12 +16,18 @@ public:
 
     void Populate(Magnet& magnet, glm::dvec2 dipole, double strength);
     void Step(float deltaTime) override;
+    void Empty() override;
     void Render(Shader& shader, float deltaTime) override;
 private:
 
     double linearDrag  = 2.0;
     double angularDrag = 5.0;
     std::vector<Dipole> dipoles;
+
+    double contactStiffness = 1000.0;
+    double contactDamping   = 30.0;
+    double maxForce  = 1e4;
+    double maxTorque = 1e4;
 };
 
 

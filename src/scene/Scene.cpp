@@ -40,7 +40,7 @@ void Scene::Populate(Magnet& magnet, double strength = 0.0, glm::dvec2 dipole = 
 void Scene::Render(Camera& camera, float deltaTime, float width, float height) {
 
     shader.Use();
-    magneticModel->Step(deltaTime);
+    if (!paused) magneticModel->Step(deltaTime);
 
     glm::mat4 projection = camera.ComputeProjectionMatrix(width, height);
     glm::mat4 view = camera.ComputeViewMatrix();
@@ -49,4 +49,16 @@ void Scene::Render(Camera& camera, float deltaTime, float width, float height) {
     shader.SetMatrix4("view", view);
 
     magneticModel->Render(shader, deltaTime);
+}
+
+void Scene::SetPaused(bool pause) {
+    paused = pause;
+}
+
+bool Scene::IsPaused() const {
+    return paused;
+}
+
+void Scene::Clear() {
+    magneticModel->Empty();
 }

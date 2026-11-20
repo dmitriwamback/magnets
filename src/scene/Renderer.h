@@ -26,6 +26,7 @@ private:
     int fpsTimer;
 
     static void CursorPositionCallback(GLFWwindow *window, double xpos, double ypos);
+    void DipoleModelSceneSetup();
 };
 
 

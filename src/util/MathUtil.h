@@ -11,7 +11,7 @@
 constexpr double MU_0 = 1.25663706e-6;
 constexpr double k = MU_0 / (4.0 * M_PI);
 
-#define R 10.0
+#define R 40.0
 
 struct Vertex {
     glm::vec2 position;

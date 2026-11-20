@@ -17,6 +17,7 @@ public:
     double rotation, mass = 1.0, angularVelocity;
     Magnet();
     void Render(float deltaTime);
+    std::vector<Vertex> GetTransformedVertices();
 
 private:
     uint32_t vertexArrayObject, vertexBufferObject;

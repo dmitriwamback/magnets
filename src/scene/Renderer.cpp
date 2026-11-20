@@ -45,25 +45,13 @@ void Renderer::Initialize() {
     scene = Scene();
     scene.SetModel(ModelType::DIPOLE_MODEL);
 
-    double magnetStrength = 20000.0;
-    int s = 5;
-
-    std::mt19937 rng(std::random_device{}());
-    std::uniform_real_distribution<double> angle(0.0, 2.0 * M_PI);
-
-    for (int x = 0; x < s; x++) {
-        for (int y = 0; y < s; y++) {
-            double a = angle(rng);
-            glm::dvec2 moment(std::cos(a), std::sin(a));
-
-            Magnet magnet;
-            magnet.position = glm::dvec2(x - s / 2, y - s / 2) * 4.0;
-            scene.Populate(magnet, magnetStrength, moment);
-        }
-    }
+    DipoleModelSceneSetup();
 }
 
 void Renderer::GameLoop() {
+
+    bool spacePressed = false;
+    bool resetScene = false;
 
     while (!glfwWindowShouldClose(window)) {
 
@@ -78,6 +66,23 @@ void Renderer::GameLoop() {
             glfwSetWindowTitle(window, ss.str().c_str());
             frameCount = 0;
             fpsTimer += 1.0;
+        }
+
+        if (!spacePressed && glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+            scene.SetPaused(!scene.IsPaused());
+            spacePressed = true;
+        }
+        if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) {
+            spacePressed = false;
+        }
+
+        if (!resetScene && glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+            scene.Clear();
+            DipoleModelSceneSetup();
+            resetScene = true;
+        }
+        if (glfwGetKey(window, GLFW_KEY_R) == GLFW_RELEASE) {
+            resetScene = false;
         }
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -101,9 +106,28 @@ void Renderer::CursorPositionCallback(GLFWwindow *window, double xpos, double yp
         float dy = ypos - self->camera.lastMouseY;
         float dx = xpos - self->camera.lastMouseX;
 
-        self->camera.position -= glm::vec2(dx, -dy) * 0.0125f;
+        self->camera.position -= glm::vec2(dx, -dy) * 0.025f;
     }
 
     self->camera.lastMouseX = xpos;
     self->camera.lastMouseY = ypos;
+}
+
+void Renderer::DipoleModelSceneSetup() {
+    double magnetStrength = 25000.0;
+    int s = 7;
+
+    std::mt19937 rng(std::random_device{}());
+    std::uniform_real_distribution<double> angle(0.0, 2.0 * M_PI);
+
+    for (int x = 0; x < s; x++) {
+        for (int y = 0; y < s; y++) {
+            double a = angle(rng);
+            glm::dvec2 moment(cos(a), sin(a));
+
+            Magnet magnet;
+            magnet.position = glm::dvec2(x - s / 2, y - s / 2) * 4.0;
+            scene.Populate(magnet, magnetStrength, moment);
+        }
+    }
 }

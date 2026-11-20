@@ -26,7 +26,14 @@ add_executable(magnet_simulator main.cpp
         src/shader/ShaderSources.h
         src/util/MathUtil.h
         src/model/dipole_model/Dipole.cpp
-        src/model/dipole_model/Dipole.h)
+        src/model/dipole_model/Dipole.h
+        src/util/collision/GJK.cpp
+        src/util/collision/GJK.h
+        src/util/collision/EPA.cpp
+        src/util/collision/EPA.h
+        src/util/collision/Simplex.cpp
+        src/util/collision/Simplex.h
+        src/util/collision/Support.h)
 
 find_package(glfw3 REQUIRED)
 find_package(GLEW REQUIRED)

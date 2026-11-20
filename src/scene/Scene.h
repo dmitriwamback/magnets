@@ -19,10 +19,14 @@ public:
     void SetModel(ModelType model);
     void Populate(Magnet& magnet, double strength, glm::dvec2 dipole);
     void Render(Camera& camera, float deltaTime, float width, float height);
+    void SetPaused(bool pause);
+    bool IsPaused() const;
+    void Clear();
 
 private:
     Model* magneticModel;
     Shader shader;
+    bool paused = false;
 };
 
 

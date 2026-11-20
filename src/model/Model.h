@@ -18,6 +18,7 @@ class Model {
 public:
     virtual void Step(float deltaTime);
     void Populate(Magnet& magnet);
+    virtual void Empty();
     virtual void Render(Shader& shader, float deltaTime);
     std::vector<Magnet> Magnets();
 
