@@ -64,8 +64,8 @@ void DipoleModel::Step(float deltaTime) {
         for (size_t j = 0; j < n; j++) {
             Collision collision = GJK::PerformGJK(magnets[i].GetTransformedVertices(), magnets[j].GetTransformedVertices());
             if (collision.collided) {
-                magnets[i].position -= collision.normal * collision.depth;
-                magnets[j].position += collision.normal * collision.depth;
+                magnets[i].position -= collision.normal * collision.depth / 2.0f;
+                magnets[j].position += collision.normal * collision.depth / 2.0f;
             }
         }
     }
